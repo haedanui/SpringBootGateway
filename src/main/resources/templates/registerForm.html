@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <link rel="stylesheet" href="/resources/style.css">
+</head>
+<body>
+
+</th:block>
+<div class="login-container">
+    <form th:method="post" th:action="@{/register/}" th:object="${accountRequest}" >
+        <p><input type="text" name="userId" placeholder="회원아이디"  />
+        <p th:each="item : ${#fields.errors('userId')}" th:text="${item}" class="error-message" />
+        </p>
+        <p><input type="password" name="userPassword" placeholder="비밀번호" />
+        <p th:each="item : ${#fields.errors('userPassword')}" th:text="${item}" class="error-message" />
+
+        <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>
+
+        <p><input type="text" name="userEmail" placeholder="회원이메일"  />
+        <p th:each="item : ${#fields.errors('userEmail')}" th:text="${item}" class="error-message" />
+        </p>
+        <p><input type="text" name="userName" placeholder="회원이름"  />
+        <p th:each="item : ${#fields.errors('userName')}" th:text="${item}" class="error-message" />
+        </p>
+        <p><input type="text" name="userState" placeholder="회원상태"  />
+        <p th:each="item : ${#fields.errors('userState')}" th:text="${item}" class="error-message" />
+        </p>
+        <p><button type="submit">회원가입</button> </p>
+    </form>
+</div>
+</body>
+</html>
