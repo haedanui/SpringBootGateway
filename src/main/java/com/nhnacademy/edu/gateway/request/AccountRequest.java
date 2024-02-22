@@ -1,15 +1,19 @@
-package com.nhnacademy.edu.gateway.domain;
+package com.nhnacademy.edu.gateway.request;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class Account {
-    private Long accountId;
+public class AccountRequest {
+
     private String userId;
+
     private String userPassword;
+
     private String userEmail;
+
     private String userName;
+
     private String userState;
 }
