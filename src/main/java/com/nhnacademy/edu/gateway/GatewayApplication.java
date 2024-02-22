@@ -23,29 +23,4 @@ public class GatewayApplication {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 
-//	@Autowired
-//	AccountService accountService;
-//	@Bean
-//	ApplicationListener<ApplicationReadyEvent> applicationReadyEventApplicationListener() {
-//		return event -> {
-//			accountService.createAccount(new Account(1L,"1","1","1","1","1"));
-//			accountService.getAccounts()
-//					.forEach(it -> log.info("multi: {}", it));
-//
-//			log.info("single: {}", accountService.getAccount("1"));
-//		};
-//	}
-
-//	@Autowired
-//	TaskService taskService;
-//	@Bean
-//		ApplicationListener<ApplicationReadyEvent> applicationReadyEventApplicationListener() {
-//		return event -> {
-//			taskService.createTask(new Task(1L, "1", "1", "1"));
-//			taskService.getTasks()
-//					.forEach(it -> log.info("multi: {}", it));
-//
-//			log.info("single: {}", taskService.getTask("1"));
-//		};
-//	}
 }
