@@ -3,10 +3,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>user access</title>
+    <title>Main</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-<h1>!!!환영합니다!!!</h1>
+
+    <div class="form">
+        <div class="form-elements">
+            <form th:action="@{/login/logout}" method="post" id="logoutForm">
+                <div class="form-element">
+                    <button type="submit" style="background-color: darkgray">로그아웃</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>
