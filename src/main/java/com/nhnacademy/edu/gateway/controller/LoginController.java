@@ -1,8 +1,8 @@
 package com.nhnacademy.edu.gateway.controller;
 
+import com.nhnacademy.edu.gateway.adaptor.AccountAdaptor;
 import com.nhnacademy.edu.gateway.domain.Account;
 import com.nhnacademy.edu.gateway.request.LoginRequest;
-import com.nhnacademy.edu.gateway.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ import java.util.Objects;
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
-    private final AccountService accountService;
+    private final AccountAdaptor accountAdaptor;
 
     @GetMapping("/login")
     public String loginForm(Model model) {
@@ -31,7 +31,7 @@ public class LoginController {
 
     @PostMapping(value = "/login")
     public String doLogin(Model model, LoginRequest loginRequest, HttpSession session){
-        Account account = accountService.getAccount(loginRequest.getUserId());
+        Account account = accountAdaptor.getAccount(loginRequest.getUserId());
         if(account.getUserId().equals(loginRequest.getUserId()) &&
         account.getUserPassword().equals(loginRequest.getUserPassword())){
             session.setAttribute("loginUserInfo", loginRequest);
@@ -46,15 +46,18 @@ public class LoginController {
         }
     }
 
-    @PostMapping(value = "/logout")
+
+
+    @PostMapping(value = "/login/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession(false);
         if(Objects.nonNull(session)){
-//            session.invalidate();
+            session.invalidate();
             Cookie cookie = new Cookie("JSESSIONID","");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-        return "redirect:/login";
+
+        return "redirect:/login/";
     }
 }
