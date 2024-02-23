@@ -1,0 +1,7 @@
+###
+GET http://localhost:9900/accounts
+Accept: application/json
+
+###
+GET http://localhost:9900/accounts/admin
+Accept: application/json

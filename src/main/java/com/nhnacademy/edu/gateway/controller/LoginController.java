@@ -10,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 
 @Slf4j
@@ -40,6 +44,17 @@ public class LoginController {
             model.addAttribute("searchUrl", "/login");
             return "alert";
         }
+    }
 
+    @PostMapping(value = "/login/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        HttpSession session = request.getSession(false);
+        if(Objects.nonNull(session)){
+            session.invalidate();
+            Cookie cookie = new Cookie("JSESSIONID","");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
+        return "redirect:/login/";
     }
 }
