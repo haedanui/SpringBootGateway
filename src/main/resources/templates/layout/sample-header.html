@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<th:block th:fragment="header">
+    <header class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #2f7bfc">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#" style="color: white">Dooray!</a>
+                <button type="button" class="btn btn-secondary" id="btn-logout">로그아웃</button>
+            </div>
+            <form method="post" id="logoutForm" action="/logout">
+            </form>
+            <script type="text/javascript">
+                window.addEventListener("DOMContentLoaded", function () {
+                    const btnLogout = document.getElementById("btn-logout");
+                    btnLogout.addEventListener("click", function () {
+                        const logoutForm = document.getElementById("logoutForm");
+                        logoutForm.submit();
+                    });
+                });
+            </script>
+        </nav>
+    </header>
+</th:block>
+</html>

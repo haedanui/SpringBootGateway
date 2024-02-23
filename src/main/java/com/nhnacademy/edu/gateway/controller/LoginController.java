@@ -35,7 +35,7 @@ public class LoginController {
         if(account.getUserId().equals(loginRequest.getUserId()) &&
         account.getUserPassword().equals(loginRequest.getUserPassword())){
             session.setAttribute("loginUserInfo", loginRequest);
-            return "main";
+            return "mainPage";
 
         } else{
 //            model.addAttribute("loginFail","로그인 실패");
@@ -46,6 +46,8 @@ public class LoginController {
         }
     }
 
+
+
     @PostMapping(value = "/login/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession(false);
@@ -55,6 +57,7 @@ public class LoginController {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
+
         return "redirect:/login/";
     }
 }

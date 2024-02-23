@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="aside">
+    <aside class="side-container">
+        <div class="vertical-menu">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Project
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" style="color: #222222">Project1</a></li>
+                    <li><a class="dropdown-item" href="#" style="color: #222222">Project2</a></li>
+                    <li><a class="dropdown-item" href="#" style="color: #222222">Project3</a></li>
+                    <li style="width: 100%;"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">프로젝트 추가</button></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+</th:block>
+</html>
