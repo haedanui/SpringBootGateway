@@ -1,10 +1,12 @@
 package com.nhnacademy.edu.gateway.request;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AccountRequest {
 
     private String userId;

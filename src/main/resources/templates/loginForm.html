@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>login</title>
-    <link rel="stylesheet" href="/resources/style.css">
+    <title>LoginPage</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
-
-</th:block>
-<div class="login-container">
+<div class="form signup">
     <form th:method="post" th:action="@{/login/}" th:object="${loginRequest}" >
-        <p><input type="text" name="userId" placeholder="회원아이디"  />
-        <p th:each="item : ${#fields.errors('userId')}" th:text="${item}" class="error-message" />
-        </p>
-        <p><input type="password" name="userPassword" placeholder="비밀번호" />
-        <p th:each="item : ${#fields.errors('userPassword')}" th:text="${item}" class="error-message" />
-
-        <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>
-
-        <p><button type="submit">로그인</button> </p>
+    <img th:src="@{/logo_dooray.png}" alt="로그인" style="max-width: 100%; max-height: 100%;">
+    <div class="form-elements">
+        <div class="form-element">
+            <input type="text" th:name="userId" placeholder="아이디" required>
+        </div>
+        <div class="form-element">
+            <input type="password" th:name="userPassword" placeholder="비밀번호" required>
+        </div>
+        <div class="form-element">
+            <button type="submit">로그인</button>
+        </div>
+        <div class="form-element">
+            <button id="signup-btn" style="background-color: darkgray" onclick="location.href='/register'">회원가입</button>
+        </div>
+    </div>
     </form>
 </div>
 </body>

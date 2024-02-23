@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class LoginController {
     private final AccountService accountService;
+
     @GetMapping("/login")
     public String loginForm(Model model) {
         model.addAttribute("loginRequest",new LoginRequest());
@@ -32,11 +33,13 @@ public class LoginController {
             session.setAttribute("loginUserInfo", loginRequest);
             return "main";
 
-        }else{
-            model.addAttribute("loginFail","로그인 실패");
-            return "loginForm";
+        } else{
+//            model.addAttribute("loginFail","로그인 실패");
+//            return "loginForm";
+            model.addAttribute("message", "로그인 실패! 아이디와 비밀번호를 확인하세요.");
+            model.addAttribute("searchUrl", "/login");
+            return "alert";
         }
 
     }
-
 }
