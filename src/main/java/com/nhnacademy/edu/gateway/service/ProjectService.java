@@ -11,17 +11,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectService {
 
-    private final ProjectAdaptor taskAdaptor;
+    private final ProjectAdaptor projectAdaptor;
 
-    public List<Project> getTasks() {
-        return taskAdaptor.getProjects();
+    public List<Project> getProjects() {
+        return projectAdaptor.getProjects();
     }
 
-    public Project getTask(String projectName) {
-        return taskAdaptor.getProject(projectName);
+    public Project getProject(String projectName) {
+        return projectAdaptor.getProject(projectName);
     }
 
-    public void createTask(Project project) {
-        taskAdaptor.createProject(project);
+    public void createProject(Project project) {
+        projectAdaptor.createProject(project);
     }
 }
