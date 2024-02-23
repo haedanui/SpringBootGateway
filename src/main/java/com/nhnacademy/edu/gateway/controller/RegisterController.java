@@ -28,10 +28,17 @@ public class RegisterController {
             Account account = new Account(1L, accountRequest.getUserId(), accountRequest.getUserPassword(),
                     accountRequest.getUserEmail(), accountRequest.getUserName(), accountRequest.getUserState());
             accountService.createAccount(account);
-            return "main";
-        }else {
-            model.addAttribute("registerFail","회원가입 실패");
-            return "registerForm";
+//            return "main";
+
+            model.addAttribute("message", "회원가입 성공!");
+            model.addAttribute("searchUrl", "/");
+            return "alert";
+        } else {
+//            model.addAttribute("registerFail","회원가입 실패");
+//            return "registerForm";
+            model.addAttribute("message", "이미 존재하는 아이디입니다.");
+            model.addAttribute("searchUrl", "/register");
+            return "alert";
         }
 
     }
