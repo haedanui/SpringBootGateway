@@ -9,10 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task {
-    private Long taskNumber;
-    private String taskState;
-    private String taskTitle;
-    private String taskContent;
+public class Tag {
+    private Long tagNumber;
+    private String tagName;
     private Long projectId;
 }
