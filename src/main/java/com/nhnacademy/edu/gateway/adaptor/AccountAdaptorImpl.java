@@ -23,7 +23,7 @@ public class AccountAdaptorImpl implements AccountAdaptor{
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountAdaptorProperties + "/accounts",
+        ResponseEntity<List<Account>> exchange = restTemplate.exchange(accountAdaptorProperties.getAddress() + "/accounts",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<Account>>() {

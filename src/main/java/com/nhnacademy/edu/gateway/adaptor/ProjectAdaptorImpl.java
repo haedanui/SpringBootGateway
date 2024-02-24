@@ -1,6 +1,7 @@
 package com.nhnacademy.edu.gateway.adaptor;
 
 import com.nhnacademy.edu.gateway.config.TaskAdaptorProperties;
+import com.nhnacademy.edu.gateway.domain.Account;
 import com.nhnacademy.edu.gateway.domain.Project;
 import com.nhnacademy.edu.gateway.domain.ProjectCreate;
 import lombok.RequiredArgsConstructor;
@@ -58,7 +59,7 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                },projectCreate);
+                });
         exchange.getBody();
     }
 }

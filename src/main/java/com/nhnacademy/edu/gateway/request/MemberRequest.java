@@ -7,7 +7,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectRequest {
-    private long projectNumber;
-    private String projectName;
+public class MemberRequest {
+    private Long projectNumber;
+    private String userName;
 }
