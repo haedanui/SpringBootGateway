@@ -10,7 +10,13 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li th:each="project : ${projectList}">
-                        <a th:href="'#' + ${project.projectName}" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></a>
+<!--                        <a th:href="'#' + ${project.projectName}" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></a>-->
+                        <form th:action="@{/mainPage/projectGet}" method="post">
+                            <input type="hidden" name="projectId" th:value="${project.projectId}" />
+                            <input type="hidden" name="projectName" th:value="${project.projectName}" />
+                            <button type="submit" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></button>
+                        </form>
+
                     </li>
                     <li style="width: 100%;"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">프로젝트 추가</button></li>
                 </ul>

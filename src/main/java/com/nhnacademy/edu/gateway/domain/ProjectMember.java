@@ -10,7 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectMember {
-    private Long userNumber;
+    private Long projectNumber;
     private String userName;
-    private Long projectId;
 }
