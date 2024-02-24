@@ -1,7 +1,11 @@
 package com.nhnacademy.edu.gateway.controller;
 
 import com.nhnacademy.edu.gateway.adaptor.AccountAdaptor;
+import com.nhnacademy.edu.gateway.adaptor.ProjectAdaptor;
+import com.nhnacademy.edu.gateway.adaptor.ProjectMemberAdaptor;
 import com.nhnacademy.edu.gateway.domain.Account;
+import com.nhnacademy.edu.gateway.domain.Project;
+import com.nhnacademy.edu.gateway.domain.ProjectMember;
 import com.nhnacademy.edu.gateway.request.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +18,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -22,10 +27,11 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class LoginController {
     private final AccountAdaptor accountAdaptor;
+    private final ProjectMemberAdaptor projectMemberAdaptor;
+    private final ProjectAdaptor projectAdaptor;
 
     @GetMapping("/login")
-    public String loginForm(Model model) {
-        model.addAttribute("loginRequest",new LoginRequest());
+    public String loginForm() {
         return "loginForm";
     }
 
@@ -33,15 +39,20 @@ public class LoginController {
     public String doLogin(Model model, LoginRequest loginRequest, HttpSession session){
         Account account = accountAdaptor.getAccount(loginRequest.getUserId());
         if(account.getUserId().equals(loginRequest.getUserId()) &&
-        account.getUserPassword().equals(loginRequest.getUserPassword())){
+            account.getUserPassword().equals(loginRequest.getUserPassword())){
             session.setAttribute("loginUserInfo", loginRequest);
-            return "mainPage";
+
+            model.addAttribute("message", "로그인 성공!");
+            model.addAttribute("searchUrl", "/mainPage");
+
+            return "alert";
 
         } else{
 //            model.addAttribute("loginFail","로그인 실패");
 //            return "loginForm";
             model.addAttribute("message", "로그인 실패! 아이디와 비밀번호를 확인하세요.");
             model.addAttribute("searchUrl", "/login");
+
             return "alert";
         }
     }
@@ -58,6 +69,6 @@ public class LoginController {
             response.addCookie(cookie);
         }
 
-        return "redirect:/login/";
+        return "redirect:/login";
     }
 }

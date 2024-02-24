@@ -5,10 +5,11 @@
     <header class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <nav class="navbar bg-body-tertiary fixed-top" style="background-color: #2f7bfc">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/" style="color: white">Dooray!</a>
+                <a class="navbar-brand" href="#" style="color: white">Dooray!</a>
+                <span th:text="${accountInfo.userName + '님 안녕하세요!'}" style="color: white"></span>
                 <button type="button" class="btn btn-secondary" id="btn-logout">로그아웃</button>
             </div>
-            <form method="post" id="logoutForm" action="/logout">
+            <form method="post" id="logoutForm" action="/login/logout">
             </form>
             <script type="text/javascript">
                 window.addEventListener("DOMContentLoaded", function () {
