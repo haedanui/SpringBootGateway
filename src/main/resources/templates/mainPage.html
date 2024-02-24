@@ -42,6 +42,7 @@
         <label for="floatingTextarea2">Comments</label>
     </div>
 
+    <form th:object="${projectRequest}" th:action="@{/mainPage/projectAdd}" method="post">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -53,26 +54,27 @@
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">프로젝트명</label>
-                            <input type="text" class="form-control" id="recipient-name">
+<!--                            <input type="text" th:name="projectName" placeholder="아이디" required>-->
+                            <input type="text" th:name="projectName" class="form-control" id="recipient-name">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">멤버</label>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                                    <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
-                                    <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                                </li>
-                                <li class="list-group-item">
-                                    <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
-                                    <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                                </li>
-                            </ul>
-                        </div>
+<!--                        <div class="mb-3">-->
+<!--                            <label for="recipient-name" class="col-form-label">멤버</label>-->
+<!--                            <ul class="list-group">-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">-->
+<!--                                    <label class="form-check-label" for="firstCheckbox">First checkbox</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">-->
+<!--                                    <label class="form-check-label" for="secondCheckbox">Second checkbox</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">-->
+<!--                                    <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
 
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">설명</label>
@@ -82,10 +84,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">추가</button>
+                    <button type="submit" class="btn btn-primary">추가</button>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </th:block>
 </html>

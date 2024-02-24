@@ -2,6 +2,7 @@ package com.nhnacademy.edu.gateway.adaptor;
 
 import com.nhnacademy.edu.gateway.config.TaskAdaptorProperties;
 import com.nhnacademy.edu.gateway.domain.Project;
+import com.nhnacademy.edu.gateway.domain.ProjectCreate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -18,23 +19,22 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
 
     private final TaskAdaptorProperties taskAdaptorProperties;
 
-
     @Override
-    public List<Project> getProjects() {
+    public List<Project> getProjects(String userName) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<List<Project>> exchange = restTemplate.exchange(taskAdaptorProperties + "/projects",
+        ResponseEntity<List<Project>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/projects/{userName}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<Project>>() {
-                });
+                },userName);
         return exchange.getBody();
     }
 
     @Override
-    public Project getProject(String projectName) {
+    public Project getProject(Long projectId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -43,22 +43,22 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Project>() {
-                },projectName);
+                },projectId);
         return exchange.getBody();
     }
 
     @Override
-    public void createProject(Project project) {
+    public void createProject(ProjectCreate projectCreate) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        HttpEntity<Project> requestEntity = new HttpEntity<>(project, httpHeaders);
-        ResponseEntity<Project> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/projects",
+        HttpEntity<ProjectCreate> requestEntity = new HttpEntity<>(projectCreate, httpHeaders);
+        ResponseEntity<ProjectCreate> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/projects",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                });
+                },projectCreate);
         exchange.getBody();
     }
 }

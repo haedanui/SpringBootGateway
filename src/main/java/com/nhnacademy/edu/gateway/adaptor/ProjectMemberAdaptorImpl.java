@@ -20,7 +20,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor{
 
 
     @Override
-    public List<ProjectMember> getProjectMembers() {
+    public List<ProjectMember> getProjectMembers(String userName) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -29,7 +29,7 @@ public class ProjectMemberAdaptorImpl implements ProjectMemberAdaptor{
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<ProjectMember>>() {
-                });
+                }, userName);
         return exchange.getBody();
     }
 

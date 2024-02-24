@@ -9,9 +9,9 @@
                     Project
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" style="color: #222222">Project1</a></li>
-                    <li><a class="dropdown-item" href="#" style="color: #222222">Project2</a></li>
-                    <li><a class="dropdown-item" href="#" style="color: #222222">Project3</a></li>
+                    <li th:each="project : ${projectList}">
+                        <a th:href="'#' + ${project.projectName}" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></a>
+                    </li>
                     <li style="width: 100%;"><button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">프로젝트 추가</button></li>
                 </ul>
             </div>
