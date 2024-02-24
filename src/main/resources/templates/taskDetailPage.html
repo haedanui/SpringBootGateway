@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout-sample}">
+
+<head>
+    <style>
+        .table td:first-child {
+            /*width: 150px;*/
+            /*padding-left: 80px;*/
+            text-align: center;
+        }
+
+        .table td:last-child {
+            width:450px;
+        }
+    </style>
+</head>
+<th:block layout:fragment="content">
+    <div class="row main-head ">
+        <div class="col-12 main-title ">
+            task Detail
+        </div>
+    </div>
+
+<!--    <div>-->
+<!--        <ul class="list-group">-->
+<!--            <li class="list-group-item">An item</li>-->
+<!--            <li class="list-group-item">A second item</li>-->
+<!--            <li class="list-group-item">A third item</li>-->
+<!--            <li class="list-group-item">A fourth item</li>-->
+<!--            <li class="list-group-item">And a fifth one</li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>업무 내용</td>
+            <td>ㅇㅇㅇ</td>
+        </tr>
+        <tr>
+            <td>업무 상태</td>
+            <td>
+                <select class="form-select" aria-label="Default select example">
+                    <option value="1" selected>할 일</option>
+                    <option value="2">진행중</option>
+                    <option value="3">완료</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>등록자</td>
+            <td>유저1</td>
+        </tr>
+        <tr>
+            <td>태그</td>
+            <td>
+                <div class="bd-example-snippet bd-code-snippet py-2">
+                    <div class="bd-example m-0 border-0 ">
+                        <span class="badge rounded-pill bg-primary">태그1</span>
+                        <span class="badge rounded-pill bg-secondary">태그2</span>
+                        <span class="badge rounded-pill bg-success">태그3</span>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary py-1" data-bs-toggle="modal"
+                        data-bs-target="#tagModal">태그 추가
+                </button>
+            </td>
+        </tr>
+
+        <tr>
+            <td>마일스톤</td>
+            <td>
+                <input type="date" name="startDate" id="taskStartDate">
+                <input type="date" name="endDate" id="taskEndDate">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <ul class="list-group">
+        <li class="list-group-item">작성자: 댓글 1
+            <div class="btn-group float-end" role="group">
+                <button type="button" class="btn btn-outline-primary">수정</button>
+                <button type="button" class="btn btn-outline-primary">삭제</button>
+            </div>
+        </li>
+        <li class="list-group-item">작성자: 댓글 2
+            <div class="btn-group float-end" role="group">
+                <button type="button" class="btn btn-outline-primary">수정</button>
+                <button type="button" class="btn btn-outline-primary">삭제</button>
+            </div>
+        </li>
+
+        <li class="list-group-item">작성자: 댓글 3
+            <div class="btn-group float-end" role="group">
+                <button type="button" class="btn btn-outline-primary">수정</button>
+                <button type="button" class="btn btn-outline-primary">삭제</button>
+            </div>
+        </li>
+    </ul>
+    <div class="form-floating" style="padding-bottom: 30px">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                  style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+    </div>
+
+<!--    <div class="btn-group" role="group" aria-label="Basic example">-->
+<!--        <button type="button" class="btn btn-primary">저장</button>-->
+<!--        <button type="button" class="btn btn-secondary" onclick="location.href='/task'">뒤로가기</button>-->
+<!--    </div>-->
+
+    <div class="modal-footer justify-content-between">
+        <div>
+            <button type="button" class="btn btn-danger">삭제</button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary" onclick="location.href='/task'">뒤로가기</button>
+            <button type="button" class="btn btn-primary">저장</button>
+        </div>
+
+    </div>
+
+
+</th:block>
+</html>
