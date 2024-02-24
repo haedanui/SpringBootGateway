@@ -37,6 +37,7 @@
                 <small class="text-body-secondary">And some muted small print.</small>
             </a>
             <a class="list-group-item list-group-item-action">
+                <span>현재 프로젝트 멤버</span>
                     <li th:each="projectMember : ${projectMemberList}">
                         <span th:text="${projectMember.userName}"></span>
                     </li>
