@@ -11,8 +11,8 @@
                 <ul class="dropdown-menu">
                     <li th:each="project : ${projectList}">
 <!--                        <a th:href="'#' + ${project.projectName}" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></a>-->
-                        <form th:action="@{/mainPage/projectGet}" method="post">
-                            <input type="hidden" name="projectId" th:value="${project.projectId}" />
+                        <form th:action="@{/mainPage/projectGet}" method="post" th:object="${projectRequest}">
+                            <input type="hidden" name="ProjectNumber" th:value="${project.projectId}" />
                             <input type="hidden" name="projectName" th:value="${project.projectName}" />
                             <button type="submit" class="dropdown-item" style="color: #222222" th:text="${project.projectName}"></button>
                         </form>

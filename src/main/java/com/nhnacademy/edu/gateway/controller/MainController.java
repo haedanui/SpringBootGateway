@@ -58,7 +58,7 @@ public class MainController {
         LoginRequest loginRequest = (LoginRequest) session.getAttribute("loginUserInfo");
         Account account = accountAdaptor.getAccount(loginRequest.getUserId());
         List<Project> projectList = projectAdaptor.getProjects(account.getUserName());
-        List<ProjectMember> projectMemberList = projectMemberAdaptor.getProjectMembers(projectList.get(0).getProjectId());
+        List<ProjectMember> projectMemberList = projectMemberAdaptor.getProjectMembers(projectRequest.getProjectNumber());
 
         model.addAttribute("projectList",projectList);
         model.addAttribute("accountInfo", account);
