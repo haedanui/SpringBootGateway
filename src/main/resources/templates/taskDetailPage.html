@@ -17,7 +17,10 @@
         }
     </style>
 </head>
+
 <th:block layout:fragment="content">
+    <span  th:if="${projectRequest != null}">
+
     <div class="row main-head ">
         <div class="col-12 main-title ">
             task Detail
@@ -155,6 +158,6 @@
 
     </div>
 
-
+    </span>
 </th:block>
 </html>
