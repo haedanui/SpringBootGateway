@@ -1,0 +1,16 @@
+###
+GET http://localhost:9900/accounts
+Accept: application/json
+
+###
+GET http://localhost:9900/accounts/admin
+Accept: application/json
+
+###
+POST http://localhost:9900/projects
+Content-Type: application/json
+
+{
+  "projectName": "프로젝트2",
+  "projectAdmin": "나채현"
+}

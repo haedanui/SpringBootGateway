@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .body-container {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            margin: auto;
+            margin-left: 260px;
+            max-width: 100%;
+        }
+
+        .side-container {
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            z-index: 1;
+            background-color: #212529;
+            overflow-x: hidden;
+            padding-top: 10px;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-container {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .main-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .portlet {
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .vertical-menu {
+            padding-top: 70px;
+            width: 100%; /* Set a width if you like */
+        }
+
+        .vertical-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vertical-menu ul li {
+            width: 100%; /* 각 li 요소의 너비를 부모 요소인 .vertical-menu에 맞춤 */
+        }
+
+        .vertical-menu ul li a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .vertical-menu ul li a:hover {
+            background-color: #ccc;
+            color: black;
+        }
+
+
+        .dropdown-toggle {
+            width: 100%; /* 버튼의 너비를 100%로 설정하여 부모 요소인 .vertical-menu에 맞춤 */
+            text-align: center;
+        }
+
+        .dropdown-menu {
+            width: 100%; /* dropdown 메뉴도 너비를 100%로 설정하여 부모 요소에 맞춤 */
+        }
+
+        .dropdown-menu button {
+            width: 100%; /* dropdown 메뉴도 너비를 100%로 설정하여 부모 요소에 맞춤 */
+        }
+
+        /*.vertical-menu a {*/
+        /*    color: white;*/
+        /*    display: block; !* Make the links appear below each other *!*/
+        /*    !*padding: 20px;*!*/
+        /*    text-decoration: none; !* Remove underline from links *!*/
+        /*}*/
+
+        /*.vertical-menu a:hover {*/
+        /*    color: black;*/
+        /*    background-color: #ccc;!* Dark grey background on mouse-over *!*/
+        /*}*/
+        .tb-success {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .tb-success td, .tb-success th {
+            border: 1px solid #ddd;
+            padding: 4px;
+        }
+
+        .tb-success tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .tb-success tr:hover {
+            background-color: #ddd;
+        }
+
+        .tb-success th {
+            padding-top: 6px;
+            padding-bottom: 6px;
+            text-align: left;
+            background-color: #2f7bfc;
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body>
+<form th:object="${projectRequest}" th:action="@{/mainPage/projectAdd}" method="post">
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="projectModalLabel">Project</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">프로젝트명</label>
+                            <input type="text" th:name="projectName" class="form-control" id="recipient-name">
+                        </div>
+
+<!--                        <div class="mb-3">-->
+<!--                            <label for="message-text" class="col-form-label">설명</label>-->
+<!--                            <textarea class="form-control" id="message-text"></textarea>-->
+<!--                        </div>-->
+
+<!--                        <div class="mb-3">-->
+<!--                            <label for="recipient-name" class="col-form-label">멤버</label>-->
+<!--                            <ul class="list-group">-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">-->
+<!--                                    <label class="form-check-label" for="firstCheckbox">유저1</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">-->
+<!--                                    <label class="form-check-label" for="secondCheckbox">유저2</label>-->
+<!--                                </li>-->
+<!--                                <li class="list-group-item">-->
+<!--                                    <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">-->
+<!--                                    <label class="form-check-label" for="thirdCheckbox">유저3</label>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+
+<!--                        <label for="message-text" class="col-form-label">상태</label>-->
+<!--                        <div class="mb-3">-->
+<!--                            <div class="form-check form-check-inline">-->
+<!--                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"-->
+<!--                                       value="option1">-->
+<!--                                <label th:name="projectState" class="form-check-label" for="inlineRadio1">일반</label>-->
+
+<!--                            </div>-->
+<!--                            <div class="form-check form-check-inline">-->
+<!--                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"-->
+<!--                                       value="option2">-->
+<!--                                <label th:name="projectState" class="form-check-label" for="inlineRadio2">할일</label>-->
+<!--                            </div>-->
+<!--                            <div class="form-check form-check-inline">-->
+<!--                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"-->
+<!--                                       value="option3">-->
+<!--                                <label th:name="projectState" class="form-check-label" for="inlineRadio3">자료수집</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <label for="recipient-name" class="col-form-label">태그</label>-->
+<!--                        <div class="mb-3">-->
+<!--                            <div class="bd-example-snippet bd-code-snippet py-2">-->
+<!--                                <div class="bd-example m-0 border-0 ">-->
+<!--                                    <span class="badge rounded-pill bg-primary">태그1</span>-->
+<!--                                    <span class="badge rounded-pill bg-secondary">태그2</span>-->
+<!--                                    <span class="badge rounded-pill bg-success">태그3</span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"-->
+<!--                                    data-bs-target="#tagModal">태그 추가-->
+<!--                            </button>-->
+<!--                        </div>-->
+
+
+<!--                        <label for="recipient-name" class="col-form-label">마일스톤</label>-->
+<!--                        <div class="mb-3">-->
+<!--                            &lt;!&ndash;                        <input type="date" name="startDate" id="projectStartDate">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                        <input type="date" name="endDate" id="projectEndDate">&ndash;&gt;-->
+<!--                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"-->
+<!--                                    data-bs-target="#milestoneModal">마일스톤 추가-->
+<!--                            </button>-->
+<!--                        </div>-->
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="submit" class="btn btn-primary">추가</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--태그 모달 시작 지점-->
+
+<div class="modal fade" id="tagModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="tagModalLabel">Tag</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">태그이름</label>
+                    <input type="text" class="form-control" id="tag-name">
+                </div>
+                <label for="recipient-name" class="col-form-label">태그 목록</label>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="firstTagCheckbox">
+                        <label class="form-check-label" for="firstTagCheckbox">태그1</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="secondTagCheckbox">
+                        <label class="form-check-label" for="secondTagCheckbox">태그2</label>
+                    </li>
+                    <li class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" value="" id="thirdTagCheckbox">
+                        <label class="form-check-label" for="thirdTagCheckbox">태그3</label>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div>
+                    <button type="button" class="btn btn-danger">삭제</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">추가</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--태그 모달 끝 지점-->
+
+
+<!--마일스톤 모달 시작 지점-->
+<div class="modal fade" id="milestoneModal" tabindex="-1" aria-labelledby="milestoneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="milestoneModalLabel">Milestone</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">마일스톤 이름</label>
+                    <input type="text" class="form-control" id="milestone-name">
+                </div>
+                <label for="recipient-name" class="col-form-label">기간 설정</label>
+                <div class="mb-3">
+                    <input type="date" name="startDate" id="projectStartDate">
+                    <input type="date" name="endDate" id="projectEndDate">
+                </div>
+                <label for="recipient-name" class="col-form-label">목록</label>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="firstMilestoneCheckbox">
+                            <p class="mb-1">테스트</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="secondMilestoneCheckbox">
+                            <p class="mb-1">테스트2</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="thirdMilestoneCheckbox">
+                            <p class="mb-1">테스트3</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div>
+                    <button type="button" class="btn btn-danger">삭제</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">추가</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--마일스톤 모달 끝 지점-->
+
+
+<div class="head-container">
+    <header th:replace="/layout/sample-header :: header"></header>
+</div>
+<aside th:replace="/layout/sample-aside :: aside"></aside>
+<div class="body-container">
+    <div class="main-container">
+        <div class="content-container">
+            <th:block layout:fragment="content"></th:block>
+            <footer th:replace="/layout/sample-footer :: footer"></footer>
+        </div>
+    </div>
+</div>
+</body>
+</html>

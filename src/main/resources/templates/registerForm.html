@@ -1,0 +1,67 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>login</title>-->
+<!--    <link rel="stylesheet" href="/resources/style.css">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</th:block>-->
+<!--<div class="login-container">-->
+<!--    <form th:method="post" th:action="@{/register/}" th:object="${accountRequest}" >-->
+<!--        <p><input type="text" name="userId" placeholder="회원아이디"  />-->
+<!--        <p th:each="item : ${#fields.errors('userId')}" th:text="${item}" class="error-message" />-->
+<!--        </p>-->
+<!--        <p><input type="password" name="userPassword" placeholder="비밀번호" />-->
+<!--        <p th:each="item : ${#fields.errors('userPassword')}" th:text="${item}" class="error-message" />-->
+
+<!--        <p  th:if="${not #strings.isEmpty(message)}" th:text="${message}" class="error-message" ></p>-->
+
+<!--        <p><input type="text" name="userEmail" placeholder="회원이메일"  />-->
+<!--        <p th:each="item : ${#fields.errors('userEmail')}" th:text="${item}" class="error-message" />-->
+<!--        </p>-->
+<!--        <p><input type="text" name="userName" placeholder="회원이름"  />-->
+<!--        <p th:each="item : ${#fields.errors('userName')}" th:text="${item}" class="error-message" />-->
+<!--        </p>-->
+<!--        <p><input type="text" name="userState" placeholder="회원상태"  />-->
+<!--        <p th:each="item : ${#fields.errors('userState')}" th:text="${item}" class="error-message" />-->
+<!--        </p>-->
+<!--        <p><button type="submit">회원가입</button> </p>-->
+<!--    </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LoginPage</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="form signup">
+    <form th:method="post" th:action="@{/register/}" th:object="${accountRequest}">
+        <img th:src="@{/logo_dooray.png}" alt="회원가입" style="max-width: 100%; max-height: 100%;">
+        <div class="form-elements">
+            <div class="form-element">
+                <input type="text" th:name="userId" placeholder="아이디" required>
+            </div>
+            <div class="form-element">
+                <input type="password" th:name="userPassword" placeholder="비밀번호" required>
+            </div>
+            <div class="form-element">
+                <input type="text" th:name="userName" placeholder="이름" required>
+            </div>
+            <div class="form-element">
+                <input type="email" th:name="userEmail" placeholder="이메일" required>
+            </div>
+            <div class="form-element">
+                <button type="submit">회원가입</button>
+            </div>
+            <div class="form-element">
+                <button type="button" style="background-color: darkgray" onclick="location.href='/login'">뒤로가기</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
