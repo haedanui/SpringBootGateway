@@ -105,11 +105,4 @@ public class MainController {
         return "redirect:/mainPage";
     }
 
-    @PostMapping(value = "/mainPage/deleteTask")
-    public String deleteTask(Model model, ProjectRequest projectRequest, HttpSession session){
-
-//        taskAdaptor.deleteTask(projectRequest.getProjectNumber(), );
-
-        return "redirect:/mainPage";
-    }
 }
