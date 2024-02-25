@@ -31,7 +31,7 @@ public class RegisterController {
 //            return "main";
 
             model.addAttribute("message", "회원가입 성공!");
-            model.addAttribute("searchUrl", "/");
+            model.addAttribute("searchUrl", "/login");
             return "alert";
         } else {
 //            model.addAttribute("registerFail","회원가입 실패");
