@@ -5,6 +5,7 @@ import com.nhnacademy.edu.gateway.adaptor.ProjectAdaptor;
 import com.nhnacademy.edu.gateway.adaptor.ProjectMemberAdaptor;
 import com.nhnacademy.edu.gateway.adaptor.TaskAdaptor;
 import com.nhnacademy.edu.gateway.domain.*;
+import com.nhnacademy.edu.gateway.dto.ProjectMemberRegisterDto;
 import com.nhnacademy.edu.gateway.request.LoginRequest;
 import com.nhnacademy.edu.gateway.request.MemberRequest;
 import com.nhnacademy.edu.gateway.request.ProjectRequest;
@@ -16,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -65,7 +68,6 @@ public class MainController {
         List<Task> taskList = taskAdaptor.getTasks(projectRequest.getProjectNumber());
         List<Account> accountList = accountAdaptor.getAccounts();
 
-
         model.addAttribute("accountList", accountList);
         model.addAttribute("projectList",projectList);
         model.addAttribute("accountInfo", account);
@@ -85,13 +87,13 @@ public class MainController {
     }
 
     @PostMapping(value = "/mainPage/memberAdd")
-    public String addMember(Model model, MemberRequest memberRequest, HttpSession session){
+    public String addMember(Model model, ProjectMemberRegisterDto projectMemberRegisterDto, HttpSession session, HttpServletRequest request){
         LoginRequest loginRequest = (LoginRequest) session.getAttribute("loginUserInfo");
-
-        ProjectMember projectMember = new ProjectMember(memberRequest.getProjectNumber(),memberRequest.getUserName());
-        projectMemberAdaptor.createProjectMember(projectMember);
-
-        return "redirect:/taskPage";
+        for (String userName : projectMemberRegisterDto.getSelectedUsers()) {
+            ProjectMember projectMember = new ProjectMember(projectMemberRegisterDto.getProjectNumber(),userName);
+            projectMemberAdaptor.createProjectMember(projectMember);
+        }
+        return "redirect:/mainPage";
     }
 
     @PostMapping(value = "/mainPage/createTask")
@@ -103,7 +105,7 @@ public class MainController {
         return "redirect:/mainPage";
     }
 
-    @PostMapping(value = "/mainPage/deletetask")
+    @PostMapping(value = "/mainPage/deleteTask")
     public String deleteTask(Model model, ProjectRequest projectRequest, HttpSession session){
 
 //        taskAdaptor.deleteTask(projectRequest.getProjectNumber(), );

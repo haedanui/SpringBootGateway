@@ -79,10 +79,14 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
+
                             <label for="message-text" class="col-form-label">멤버</label>
                             <ul class="list-group">
                                 <li th:each="account : ${accountList}" class="list-group-item">
                                     <input type="hidden" name="userName" th:value="${account.userName}" />
+                                    <input type="hidden" name="userNumber" th:value="${account.accountId}" />
+                                    <input type="hidden" name="projectId" th:value="${account.accountId}" />
+                                    <input type="hidden" name="projectNumber" th:value="${projectRequest.projectNumber}" />
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="userCheck-${account.userName}" name="selectedUsers" th:value="${account.userName}" />
                                         <label class="form-check-label" for="userCheck-${account.userName}" style="color: #222222;" th:text="${account.userName}"></label>
