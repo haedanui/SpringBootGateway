@@ -18,45 +18,59 @@ public class TaskAdaptorImpl implements TaskAdaptor{
 
     private final TaskAdaptorProperties taskAdaptorProperties;
     @Override
-    public List<Task> getTasks() {
+    public List<Task> getTasks(Long projectId) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<List<Task>> exchange = restTemplate.exchange(taskAdaptorProperties + "/tasks",
+        ResponseEntity<List<Task>> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress() + "/projects/{projectId}/task",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<List<Task>>() {
-                });
+                },projectId);
         return exchange.getBody();
     }
 
     @Override
-    public Task getTasks(Long taskNumber) {
+    public Task getTasks(Long projectId, Long taskNumber) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<Task> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/tasks/{taskNumber}",
+        ResponseEntity<Task> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/projects/projectId/task/{taskNumber}",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<Task>() {
-                },taskNumber);
+                },projectId, taskNumber);
         return exchange.getBody();
     }
 
     @Override
-    public void createTask(Task task) {
+    public void createTask(Long projectId, Task task) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         HttpEntity<Task> requestEntity = new HttpEntity<>(task, httpHeaders);
-        ResponseEntity<Task> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/tasks",
+        ResponseEntity<Task> exchange = restTemplate.exchange(taskAdaptorProperties.getAddress()+"/projects/{projectId}/task",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
-                });
+                }, projectId);
         exchange.getBody();
+    }
+
+    @Override
+    public void deleteTask(Long projectId, Long taskNumber) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        restTemplate.exchange(taskAdaptorProperties.getAddress() + "/projects/{projectId}/task/{taskNumber}",
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class,
+                projectId, taskNumber);
     }
 }

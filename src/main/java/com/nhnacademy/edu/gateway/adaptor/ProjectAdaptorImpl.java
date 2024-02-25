@@ -62,4 +62,18 @@ public class ProjectAdaptorImpl implements ProjectAdaptor {
                 });
         exchange.getBody();
     }
+
+    @Override
+    public void deleteProject(Long projectId) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+
+        restTemplate.exchange(taskAdaptorProperties.getAddress() + "/projects/{projectId}",
+                HttpMethod.DELETE,
+                requestEntity,
+                Void.class,
+                projectId);
+    }
 }
