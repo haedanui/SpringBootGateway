@@ -213,8 +213,11 @@
 
                     <label for="recipient-name" class="col-form-label">마일스톤</label>
                     <div class="mb-3">
-                        <input type="date" name="startDate" id="projectStartDate">
-                        <input type="date" name="endDate" id="projectEndDate">
+                        <!--                        <input type="date" name="startDate" id="projectStartDate">-->
+                        <!--                        <input type="date" name="endDate" id="projectEndDate">-->
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#milestoneModal">마일스톤 추가
+                        </button>
                     </div>
 
                 </form>
@@ -233,7 +236,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="tagModalLabel">태그 추가</h1>
+                <h1 class="modal-title fs-5" id="tagModalLabel">Tag</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -241,7 +244,7 @@
                     <label for="recipient-name" class="col-form-label">태그이름</label>
                     <input type="text" class="form-control" id="tag-name">
                 </div>
-                <label for="recipient-name" class="col-form-label">멤버</label>
+                <label for="recipient-name" class="col-form-label">태그 목록</label>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <input class="form-check-input me-1" type="checkbox" value="" id="firstTagCheckbox">
@@ -272,6 +275,65 @@
 </div>
 
 <!--태그 모달 끝 지점-->
+
+
+<!--마일스톤 모달 시작 지점-->
+<div class="modal fade" id="milestoneModal" tabindex="-1" aria-labelledby="milestoneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="milestoneModalLabel">Milestone</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">마일스톤 이름</label>
+                    <input type="text" class="form-control" id="milestone-name">
+                </div>
+                <label for="recipient-name" class="col-form-label">기간 설정</label>
+                <div class="mb-3">
+                    <input type="date" name="startDate" id="projectStartDate">
+                    <input type="date" name="endDate" id="projectEndDate">
+                </div>
+                <label for="recipient-name" class="col-form-label">목록</label>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="firstMilestoneCheckbox">
+                            <p class="mb-1">테스트</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="secondMilestoneCheckbox">
+                            <p class="mb-1">테스트2</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <input class="form-check-input me-1" type="checkbox" value="" id="thirdMilestoneCheckbox">
+                            <p class="mb-1">테스트3</p>
+                            <small class="text-body-secondary">2024.02.25 ~ 2024.02.28</small>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <div>
+                    <button type="button" class="btn btn-danger">삭제</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">추가</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--마일스톤 모달 끝 지점-->
 
 
 <div class="head-container">
