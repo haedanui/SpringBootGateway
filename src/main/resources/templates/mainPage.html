@@ -36,37 +36,37 @@
                     data-bs-target="#createTask"
                     data-bs-whatever="@{'projectId=' + ${projectRequest.projectId} + '&projectName=' + ${projectRequest.projectName}}">Task 추가</button>
 
-            <div style="margin: 20px 0px"></div>
+<!--            <div style="margin: 20px 0px"></div>-->
 
-            <h2>테스크 목록</h2>
+<!--            <h2>테스크 목록</h2>-->
 
-            <li th:each="task : ${taskList}">
-                <form th:action="@{/mainPage/taskGet}" method="post" th:object="${projectRequest}">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <h1 th:text="${task.taskTitle}"></h1>
+<!--            <li th:each="task : ${taskList}">-->
+<!--                <form th:action="@{/mainPage/taskGet}" method="post" th:object="${projectRequest}">-->
+<!--                    <a href="#" class="list-group-item list-group-item-action">-->
+<!--                        <h1 th:text="${task.taskTitle}"></h1>-->
 
-                        <form th:action="@{/mainPage/deletetask}" method="post" th:object="${projectRequest}">
-                            <input type="hidden" name="_method" value="delete"/>
-                            <input type="hidden" th:name="projectNumber" th:value="${projectRequest.projectNumber}" />
-<!--                            <input type="hidden" th:name="projectNumber" th:value="${task.projectNumber}" />-->
-                            <button type="submit">태스크 삭제</button>
-                        </form>
-                        <div style="margin: 10px 0px"></div>
+<!--                        <form th:action="@{/mainPage/deletetask}" method="post" th:object="${projectRequest}">-->
+<!--                            <input type="hidden" name="_method" value="delete"/>-->
+<!--                            <input type="hidden" th:name="projectNumber" th:value="${projectRequest.projectNumber}" />-->
+<!--&lt;!&ndash;                            <input type="hidden" th:name="projectNumber" th:value="${task.projectNumber}" />&ndash;&gt;-->
+<!--                            <button type="submit">태스크 삭제</button>-->
+<!--                        </form>-->
+<!--                        <div style="margin: 10px 0px"></div>-->
 
-                        <span th:text="${task.taskContent}"></span>
-                    </a>
+<!--                        <span th:text="${task.taskContent}"></span>-->
+<!--                    </a>-->
 
-                </form>
-            </li>
+<!--                </form>-->
+<!--            </li>-->
 
-            <div style="margin: 20px 0px"></div>
+<!--            <div style="margin: 20px 0px"></div>-->
 
-            <a class="list-group-item list-group-item-action">
-                <span>현재 프로젝트 멤버</span>
-                <li th:each="projectMember : ${projectMemberList}">
-                    <span th:text="${projectMember.userName}"></span>
-                </li>
-                </a>
+<!--            <a class="list-group-item list-group-item-action">-->
+<!--                <span>현재 프로젝트 멤버</span>-->
+<!--                <li th:each="projectMember : ${projectMemberList}">-->
+<!--                    <span th:text="${projectMember.userName}"></span>-->
+<!--                </li>-->
+<!--                </a>-->
 
             <div style="margin: 20px 0px"></div>
 
@@ -144,7 +144,6 @@
             </div>
         </div>
     </form>
-
     </span>
 
     <span  th:if="${projectRequest != null}">
