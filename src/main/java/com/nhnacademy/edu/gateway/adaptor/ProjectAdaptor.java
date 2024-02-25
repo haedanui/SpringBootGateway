@@ -11,4 +11,6 @@ public interface ProjectAdaptor {
     Project getProject(Long projectId);
 
     void createProject(ProjectCreate projectCreate);
+
+    void deleteProject(Long projectId);
 }

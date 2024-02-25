@@ -6,9 +6,11 @@ import com.nhnacademy.edu.gateway.domain.Task;
 import java.util.List;
 
 public interface TaskAdaptor {
-    List<Task> getTasks();
+    List<Task> getTasks(Long projectId);
 
-    Task getTasks(Long taskNumber);
+    Task getTasks(Long projectId, Long taskNumber);
 
-    void createTask(Task task);
+    void createTask(Long projectId, Task task);
+
+    void deleteTask(Long projectId, Long taskNumber);
 }
