@@ -65,6 +65,7 @@ public class MainController {
         List<Task> taskList = taskAdaptor.getTasks(projectRequest.getProjectNumber());
         List<Account> accountList = accountAdaptor.getAccounts();
 
+
         model.addAttribute("accountList", accountList);
         model.addAttribute("projectList",projectList);
         model.addAttribute("accountInfo", account);
@@ -85,6 +86,8 @@ public class MainController {
 
     @PostMapping(value = "/mainPage/memberAdd")
     public String addMember(Model model, MemberRequest memberRequest, HttpSession session){
+        LoginRequest loginRequest = (LoginRequest) session.getAttribute("loginUserInfo");
+
         ProjectMember projectMember = new ProjectMember(memberRequest.getProjectNumber(),memberRequest.getUserName());
         projectMemberAdaptor.createProjectMember(projectMember);
 

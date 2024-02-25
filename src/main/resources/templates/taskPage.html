@@ -27,6 +27,9 @@
         </div>
     </div>
 
+    <span  th:if="${projectRequest != null}">
+
+
     <div class="list-group" style="padding-top: 30px; padding-bottom: 30px">
         <li th:each="task : ${taskList}">
             <form th:action="@{/mainPage/taskGet}" method="post" th:object="${projectRequest}">
@@ -64,6 +67,7 @@
             </li>
         </a>
     </div>
+    </span>
 
     <form th:object="${memberRequest}" th:action="@{/mainPage/memberAdd}" method="post">
         <div class="modal fade" id="projectMemberModal" tabindex="-1" aria-labelledby="projectMemberModalLabel" aria-hidden="true">
@@ -75,10 +79,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">멤버</label>
+                            <label for="message-text" class="col-form-label">멤버</label>
                             <ul class="list-group">
                                 <li th:each="account : ${accountList}" class="list-group-item">
-                                    <input type="hidden" name="userId" th:value="${account.userId}" />
+                                    <input type="hidden" name="userName" th:value="${account.userName}" />
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="userCheck-${account.userName}" name="selectedUsers" th:value="${account.userName}" />
                                         <label class="form-check-label" for="userCheck-${account.userName}" style="color: #222222;" th:text="${account.userName}"></label>
