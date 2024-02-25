@@ -37,6 +37,7 @@ public class MainController {
         LoginRequest loginRequest = (LoginRequest) session.getAttribute("loginUserInfo");
         Account account = accountAdaptor.getAccount(loginRequest.getUserId());
         model.addAttribute("accountInfo", account);
+
         //        List<Project> projectList = (List<Project>) model.getAttribute("projectList");
 
         List<Project> projectList = projectAdaptor.getProjects(account.getUserName());
@@ -62,14 +63,16 @@ public class MainController {
         List<Project> projectList = projectAdaptor.getProjects(account.getUserName());
         List<ProjectMember> projectMemberList = projectMemberAdaptor.getProjectMembers(projectRequest.getProjectNumber());
         List<Task> taskList = taskAdaptor.getTasks(projectRequest.getProjectNumber());
+        List<Account> accountList = accountAdaptor.getAccounts();
 
+        model.addAttribute("accountList", accountList);
         model.addAttribute("projectList",projectList);
         model.addAttribute("accountInfo", account);
         model.addAttribute("projectRequest",projectRequest);
         model.addAttribute("projectMemberList",projectMemberList);
         model.addAttribute("taskList",taskList);
 
-        return "mainPage";
+        return "taskPage";
     }
 
     @PostMapping(value = "/mainPage/deleteProject")
@@ -82,12 +85,10 @@ public class MainController {
 
     @PostMapping(value = "/mainPage/memberAdd")
     public String addMember(Model model, MemberRequest memberRequest, HttpSession session){
-        LoginRequest loginRequest = (LoginRequest) session.getAttribute("loginUserInfo");
-
         ProjectMember projectMember = new ProjectMember(memberRequest.getProjectNumber(),memberRequest.getUserName());
         projectMemberAdaptor.createProjectMember(projectMember);
 
-        return "redirect:/mainPage";
+        return "redirect:/taskPage";
     }
 
     @PostMapping(value = "/mainPage/createTask")
