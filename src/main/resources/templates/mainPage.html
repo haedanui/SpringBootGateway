@@ -110,7 +110,6 @@
     </form>
 
     <span  th:if="${projectRequest != null}">
-
     <form th:object="${memberRequest}" th:action="@{/mainPage/memberAdd}" method="post">
         <div class="modal fade" id="projectMember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -126,13 +125,6 @@
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">멤버 이름</label>
                                 <input type="text" th:name="userName" class="form-control" id="memberName" />
-
-<!--                                <div class="checkbox-group">-->
-<!--                                    <label th:each="project : ${projectList}">-->
-<!--                                        <input type="checkbox" th:id="${'projectCheckbox_' + project.projectId}" th:name="projectNumber" th:value="${project.projectId}" />-->
-<!--                                        <span th:text="${project.projectName}"></span>-->
-<!--                                    </label>-->
-<!--                                </div>-->
                             </div>
                         </form>
                     </div>
